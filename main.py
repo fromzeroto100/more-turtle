@@ -1,18 +1,33 @@
 from turtle import Turtle, Screen
+import random
 
+turtle = Turtle()
 
+is_race_on = False
 screen = Screen()
 screen.setup(width=500, height=400)
 user_bet = screen.textinput(title="Make your bet", prompt="Which turtle will win the race? Enter a color: ")
 colors = ["red", "green", "blue", "yellow", "orange", "purple"]
 y_positions = [-70, -10, 40, 90, 140, 180]
+all_turtles = []
 
 for turtle_index in range(0, 6):
-    t1 = Turtle(shape="turtle")
-    t1.color(colors[turtle_index])
-    t1.penup()
-    t1.goto(x=-230, y=[y_positions])
-    t1.pendown
+    new_turtle = Turtle(shape="turtle")
+    new_turtle.color(colors[turtle_index])
+    new_turtle.penup()
+    new_turtle.goto(x=-230, y=y_positions[turtle_index])
+    new_turtle.pendown()
+    all_turtles.append(new_turtle)
+
+if user_bet:
+    is_race_on = True
+
+while is_race_on:
+    for turtle in all_turtles:
+        rand_distance = random.randint(0, 10)
+        turtle.fd(rand_distance)
+        
+
 # t2 = Turtle(shape="turtle")
 # t2.color("blue")
 # t2.penup()
